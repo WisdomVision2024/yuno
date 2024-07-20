@@ -46,13 +46,11 @@ print(data)
 import google.generativeai as genai
 import os
 
-question=text
-
 api_key = 'AIzaSyBCcg0skdWwwG-hBucIvDCLHY9FFtzw9-0'
 genai.configure(api_key = api_key)
 
 model = genai.GenerativeModel('gemini-pro')
-response = model.generate_content(data+question+"，如果遇到計算距離的問題，請利用勾股定理((長*長+寬*寬)開根號)的方式來計算，如果我的路徑經過了一個無法越過的物品的範圍，那就是會撞到")
+response = model.generate_content(data+text+"，如果遇到計算距離的問題，請利用勾股定理((長*長+寬*寬)開根號)的方式來計算，如果我的路徑經過了一個無法越過的物品的範圍，那就是會撞到")
 print(response.text)
 
 #文字轉語音  
