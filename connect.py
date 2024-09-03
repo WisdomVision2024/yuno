@@ -107,11 +107,11 @@ print(response.text)
 
 
 
-#{global history
-#history=1
-#def comp(a):
-#    print(history+a)
-#    history+=1
-#comp()
-#comp()}
+
+history=1
+def comp():
+    print(history)
+    history+=1
+comp()
+comp()
 
