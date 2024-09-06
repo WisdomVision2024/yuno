@@ -107,3 +107,6 @@ con(b)
 con(b)
 con(b)
 con(c)
+con(a)
+con(c)
+
