@@ -29,11 +29,11 @@ def find_point(question,data):
         return "辨識失敗，請再試一次"
 
 # 輸入資料
-dataa = [{"x": 606.5, "y": 400}]
+# dataa = [{"x": 606.5, "y": 400}]
 
-# 取出 x 和 y 的值
-q=input("輸入問題:")
+# # 取出 x 和 y 的值
+# q=input("輸入問題:")
 
-output = find_point(q,dataa)
+# output = find_point(q,dataa)
 
-print(output)
+# print(output)

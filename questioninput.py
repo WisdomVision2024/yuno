@@ -1,5 +1,6 @@
 from itemidentify import con
 from face import face
+from pointquestion import find_point
 #串接GEMINI
 import google.generativeai as genai
 import os
@@ -98,18 +99,17 @@ fe = [
     {"name": "Paney", "confidence": 0.6877386840481583},
 ]
 
-
+#輸入標點資料
+dataa = [{"x": 606.5, "y": 400}]
 
 
 #標點類
 for keyword in keyworda:
     if keyword in distribution:
         print(f"請將手機對準地板五秒鐘")
-        # 辨識出標點
-        # 從資料庫中讀取該標點資訊
-        result="使用者現在在標點a，這裡附近有沙發、時鐘，沙發的反方向就是桌子"
-        response = model.generate_content("請根據環境資料:"+result+"回答使用者的問題，請回答給使用者完整且詳細的句子，並且回答問題時請以「您」稱呼使用者。問題:"+question)
-        print(response.text)
+        #輸入data
+        ans=find_point(question,dataa)
+        print(ans)
         break
 #物品類
 for keyword in keywordb:
