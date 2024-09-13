@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import pandas as pd
+>>>>>>> 95666a7d7c36611f997b175a7013c00b7089ef9c
 import json
 import google.generativeai as genai
 import os
@@ -6,6 +10,7 @@ api_key = 'AIzaSyBCcg0skdWwwG-hBucIvDCLHY9FFtzw9-0'
 genai.configure(api_key=api_key)
 model = genai.GenerativeModel('gemini-pro')
 
+<<<<<<< HEAD
 def face(input_data):
     item_counts = {
         "黃樺裕": 0,
@@ -22,15 +27,30 @@ def face(input_data):
                 item_counts["羅詠琳"] += 1
             elif item["name"] == "Paney" and item["confidence"] > 0.5:
                 item_counts["莊佩蓁"] += 1
-    
-    # 只保留數量大於 0 的項目
-    fitem = {item: count for item, count in item_counts.items() if count > 0}
-    
-    # 構建結果字符串，僅包含物品名稱
-    result = "、".join(f"{item}" for item in fitem.keys())
-    ans = "畫面中有" + result
-    return ans
+=======
 
+# 讀取 Excel 檔案
+df = pd.read_excel(r'C:\Users\USER\OneDrive\Desktop\專題\程式\yuno\environmentimfo.xlsx')
+
+def find_point(question,data):
+    # 取出 x 和 y 的值
+    x = data[0]['x']
+    y = data[0]['y']
+    # 選取符合 x 和 y 的行
+    result = df[(df['x'] == x) & (df['y'] == y)]
+    
+    if not result.empty:
+        # 提取物件的 name 和 info
+        name = result['name'].values[0]
+        info = result['資訊'].values[0]
+        response = model.generate_content("使用者現在在"+name+"點，"+info+"。請根據以上資訊來回答使用者的問題，問題中的「我」代表使用者，請用您來稱呼使用者，請用完整句子來回答使用者，且回答中別帶有空格及特殊符號，使用者的問題:"+question)
+>>>>>>> 95666a7d7c36611f997b175a7013c00b7089ef9c
+    
+        return response.text
+    else:
+        return "辨識失敗，請再試一次"
+
+<<<<<<< HEAD
 # 測試資料
 a = [
     {"name": "Huang", "confidence": 0.6877386840481583}
@@ -57,6 +77,14 @@ q=model.generate_content("請幫我進行文字的校正，校正的部分主要
 print(q)
 response = model.generate_content("莊佩蓁、黃樺裕、羅詠琳皆為使用者認識的人，例如使用者可能會問:莊佩蓁在我的前面嗎，如果畫面中有莊佩蓁的話，就要回答，是的莊佩蓁在您的前面。請根據此回答問題，請回答完整句子，如果畫面中沒有該人，就請回答沒有。這是你剛剛的錯誤案例:在這個案例中的畫面中有黃樺裕、莊佩蓁，案例的問題為:這附近有我認識的人嗎，你的錯誤回答為:是的，莊佩蓁在您的前面。在你的回答中，你忽略了黃樺裕也在你的畫面中，他們三個都是使用者認識的人，因此只要有出現就要回報給使用者，畫面中沒提到羅詠琳，代表他不存在，因此正確的回答為:有，黃樺裕跟莊佩蓁在您的前方。此為剛剛的對話紀錄:現在畫面中有黃樺裕、莊佩蓁。問題:誰在我的前方。你的回答:莊佩蓁在您的前方，看起來你又忽略了畫面中有的黃樺裕，請記住，只要畫面中有提到的都必須回報給使用者，之後請記得修正這個問題，正確回答應該為:目前莊佩蓁跟黃樺裕在您的前方。請記住，剛剛的只是例子，只能參考案例中答題的邏輯，接下來請根據畫面中的資訊「現在"+response.text+"」來回答問題，此為使用者前方的畫面，現在使用者的問題為:"+q)
 print(response.text)
+=======
+# 輸入資料
+dataa = [{"x": 606.5, "y": 400}]
+>>>>>>> 95666a7d7c36611f997b175a7013c00b7089ef9c
 
+# 取出 x 和 y 的值
+q=input("輸入問題:")
 
+output = find_point(q,dataa)
 
+print(output)
